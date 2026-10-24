@@ -6,9 +6,6 @@
 
     <ul>
       <li>
-        <NuxtLink to="/rails/template">/rails/template</NuxtLink>
-      </li>
-      <li>
         <NuxtLink to="/rails/peach">/rails/peach</NuxtLink>
       </li>
       <li>
