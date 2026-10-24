@@ -175,11 +175,11 @@ Bisq has not been yet even evaluated and it is mentioned here as a note.
 
 #### Rails  
 
-Payment rail modules. Each injects pages, composables, and server handlers into the host app, and can also run standalone as a Nitro server.
+Payment rail modules. Each mounted rail injects pages, composables, and server handlers into the host app, and can also run standalone as a Nitro server; the template is only a scaffold to copy.
 
 | Package | Page | API |
 |---------|------|-----|
-| `@ara-peaha-ai/template` (`rails/template`), reference to copy, not mounted in the app | `/rails/template` | `/api/rails/template` |
+| `@ara-peaha-ai/template` (`rails/template`) | — | — (copy-only scaffold for a new rail, not mounted; see `rails/template/README.md`) |
 | `@ara-peaha-ai/peach` (`rails/peach`) | `/rails/peach` | `/api/rails/peach/*` |
 | `@ara-peaha-ai/robosats` (`rails/robosats`) | `/rails/robosats` | `/api/rails/robosats/*` |
 

@@ -27,7 +27,7 @@ export default defineNuxtModule({
 
     const resolver = createResolver(import.meta.url)
 
-    // module option, then runtime config (NUXT_* env), then default
+    // build-time value: module option, then runtimeConfig, then default; NUXT_MASSPAY_* env vars override it at runtime
     const configDefaults = {
       masspayBaseUrl: 'https://api.masspay.io/v1.0.0',
       masspayApiKey: '',

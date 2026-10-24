@@ -11,7 +11,7 @@ const sources = Object.assign(Object.create(null), {
 })
 
 export default defineEventHandler((event) => {
-  const side = event.path.split('?')[0].split('/').at(-2)
+  const side = event.path.split('?')[0].replace(/\/+$/, '').split('/').at(-2)
   const fetchOffers = sources[side]?.[getRouterParam(event, 'source')]
   if (!fetchOffers) throw createError({ statusCode: 404 })
   return fetchOffers(getRouterParam(event, 'currency'))
