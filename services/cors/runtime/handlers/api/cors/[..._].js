@@ -1,6 +1,12 @@
 import { readBody, getQuery, getRequestHeaders, getMethod } from 'h3'
 import { ofetch } from 'ofetch'
 
+import { createHash, timingSafeEqual } from 'node:crypto'
+
+const digest = (value) => createHash('sha256').update(String(value)).digest()
+// fail closed: an unset secret never matches; the sha256 digests are compared with timingSafeEqual
+const sameSecret = (provided, expected) => Boolean(expected && provided) && timingSafeEqual(digest(provided), digest(expected))
+
 export default defineEventHandler(async (event) => {
 
   const { corsTargetUrl, corsProxySecret } = useRuntimeConfig(event)
@@ -18,7 +24,7 @@ export default defineEventHandler(async (event) => {
   // Start from incoming headers…
   const incomingHeaders = getRequestHeaders(event)
 
-  if (incomingHeaders['x-cors-secret'] !== corsProxySecret) {
+  if (!sameSecret(incomingHeaders['x-cors-secret'], corsProxySecret)) {
     setResponseStatus(event, 403)
     return { error: 'Forbidden' }
   }
@@ -37,6 +43,8 @@ export default defineEventHandler(async (event) => {
   delete headers['connection']
   delete headers['origin']
   delete headers['referer']
+  // the proxy credential never reaches the target API
+  delete headers['x-cors-secret']
 
   let body
   if (method !== 'GET' && method !== 'HEAD') {

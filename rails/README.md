@@ -8,7 +8,7 @@ Each rail is a dual-mode module: it can run as a **standalone Nitro server** or 
 
 | Package | Page | API | Description |
 |---------|------|-----|-------------|
-| `@ara-peaha-ai/template` | `/rails/template` | `/api/rails/template` | Reference rail — copy this to scaffold a new integration |
+| `@ara-peaha-ai/template` | — | — | Copy-only scaffold for a new integration, not mounted in the app (its own routes are `/rails/template` and `/api/rails/template` once copied and renamed) |
 | `@ara-peaha-ai/peach` | `/rails/peach` | `/api/rails/peach/*` | [Peach](https://peachbitcoin.com) P2P Bitcoin rail |
 | `@ara-peaha-ai/robosats` | `/rails/robosats` | `/api/rails/robosats/*` | [RoboSats](https://robosats.com) P2P Bitcoin rail — includes `@ara-peaha-ai/tor` automatically |
 | `@ara-peaha-ai/masspay` | `/rails/masspay` | `/api/rails/masspay/*` | [MassPay](https://www.masspay.io) wallet rail — sweeps incoming USDT/ACH funds to PYG via SIPAP |
